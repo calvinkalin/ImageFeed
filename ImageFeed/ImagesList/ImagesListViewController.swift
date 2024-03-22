@@ -21,7 +21,7 @@ class ImagesListViewController: UIViewController {
     }()
     
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        let likeButton = indexPath.row % 2 == 0 ? cell.likeButton.setImage(UIImage(named: "like_button_off"), for: .normal) : cell.likeButton.setImage(UIImage(named: "like_button_on"), for: .normal)
+        let likeButton = indexPath.row % 2 == 0 ? cell.likeButton.setImage(UIImage(named: "like_button_on"), for: .normal) : cell.likeButton.setImage(UIImage(named: "like_button_off"), for: .normal)
         
         cell.contentImage?.image = UIImage(named: photosName[indexPath.row]) ?? UIImage()
         cell.dateLabel?.text = dateFormatter.string(from: Date())
@@ -74,6 +74,5 @@ extension ImagesListViewController: UITableViewDataSource {
         
         return imageListCell
     }
-    
     
 }

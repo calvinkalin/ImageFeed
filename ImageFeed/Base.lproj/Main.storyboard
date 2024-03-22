@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ImagesListCell" rowHeight="224" id="bwk-bh-LWf" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="ImagesListCell" rowHeight="224" id="bwk-bh-LWf" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bwk-bh-LWf" id="7np-dS-SBo">
@@ -88,9 +88,88 @@
             </objects>
             <point key="canvasLocation" x="43.511450381679388" y="-2.1126760563380285"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Hey-RD-mNH">
+            <objects>
+                <viewController id="i6d-hQ-ocb" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sD9-ey-EEA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAe-nm-paF" userLabel="Logout Button">
+                                <rect key="frame" x="353" y="114" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="peb-mS-xeb"/>
+                                    <constraint firstAttribute="width" constant="24" id="zbE-vM-RyE"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="logout_button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBI-nl-2mj" userLabel="Name Label">
+                                <rect key="frame" x="16" y="154" width="235" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="eYw-6P-DIA"/>
+                                    <constraint firstAttribute="width" constant="235" id="fYo-CY-mp0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVA-AS-EbE" userLabel="Tag Label">
+                                <rect key="frame" x="16" y="180" width="99" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="m7i-SU-J8H"/>
+                                    <constraint firstAttribute="width" constant="99" id="wjM-Nk-Xk3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.68235294117647061" green="0.68627450980392157" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9C-al-FJf" userLabel="Bio Label">
+                                <rect key="frame" x="16" y="206" width="77" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="A7g-dz-Jk5"/>
+                                    <constraint firstAttribute="width" constant="77" id="ghQ-mu-pWR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePic" translatesAutoresizingMaskIntoConstraints="NO" id="Phx-v0-eSg" userLabel="Profile Pic">
+                                <rect key="frame" x="16" y="76" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="IHy-gX-j6E"/>
+                                    <constraint firstAttribute="width" constant="70" id="TBn-xe-sMA"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WK3-vG-KlJ"/>
+                        <color key="backgroundColor" red="0.10196078431372549" green="0.10588235294117647" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="Y9C-al-FJf" secondAttribute="top" constant="-206" id="1Hf-qU-Hlz"/>
+                            <constraint firstItem="iAe-nm-paF" firstAttribute="top" secondItem="WK3-vG-KlJ" secondAttribute="top" constant="55" id="33p-qp-YJv"/>
+                            <constraint firstItem="WK3-vG-KlJ" firstAttribute="trailing" secondItem="iAe-nm-paF" secondAttribute="trailing" constant="16" id="8o5-L6-SB1"/>
+                            <constraint firstItem="iAe-nm-paF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Phx-v0-eSg" secondAttribute="trailing" id="GK8-Tb-qI8"/>
+                            <constraint firstItem="rVA-AS-EbE" firstAttribute="leading" secondItem="WK3-vG-KlJ" secondAttribute="leading" constant="16" id="PUk-Am-k6m"/>
+                            <constraint firstItem="Phx-v0-eSg" firstAttribute="leading" secondItem="WK3-vG-KlJ" secondAttribute="leading" constant="16" id="Pj0-xn-y9F"/>
+                            <constraint firstAttribute="top" secondItem="rVA-AS-EbE" secondAttribute="top" constant="-180" id="Tck-c5-Gd6"/>
+                            <constraint firstAttribute="top" secondItem="lBI-nl-2mj" secondAttribute="bottom" constant="206" id="VQO-bQ-TD4"/>
+                            <constraint firstItem="Phx-v0-eSg" firstAttribute="top" secondItem="sD9-ey-EEA" secondAttribute="top" constant="76" id="dsj-lG-Fdy"/>
+                            <constraint firstItem="lBI-nl-2mj" firstAttribute="top" secondItem="sD9-ey-EEA" secondAttribute="top" constant="154" id="tdw-0z-IsB"/>
+                            <constraint firstItem="Y9C-al-FJf" firstAttribute="leading" secondItem="WK3-vG-KlJ" secondAttribute="leading" constant="16" id="vMa-PI-Pe0"/>
+                            <constraint firstItem="lBI-nl-2mj" firstAttribute="leading" secondItem="WK3-vG-KlJ" secondAttribute="leading" constant="16" id="xZf-eW-fh9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O1a-75-Mkf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-764" y="-2"/>
+        </scene>
     </scenes>
     <resources>
         <image name="12" width="1280" height="945"/>
         <image name="like_button_on" width="42" height="42"/>
+        <image name="logout_button" width="24" height="24"/>
+        <image name="profilePic" width="350" height="350"/>
     </resources>
 </document>
