@@ -13,6 +13,7 @@
 		26063AB22B9F413700D489CF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 26063AB12B9F413700D489CF /* Base */; };
 		26063AB42B9F413900D489CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26063AB32B9F413900D489CF /* Assets.xcassets */; };
 		26063AB72B9F413900D489CF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 26063AB62B9F413900D489CF /* Base */; };
+		262B64142BAB215C00B308C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B64132BAB215C00B308C8 /* ProfileViewController.swift */; };
 		26F02F9C2B9FC10D003299DF /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F02F9B2B9FC10D003299DF /* ImagesListCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		26063AB32B9F413900D489CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26063AB62B9F413900D489CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26063AB82B9F413900D489CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		262B64132BAB215C00B308C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		26F02F9B2B9FC10D003299DF /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 			children = (
 				26063AAA2B9F413700D489CF /* AppDelegate.swift */,
 				26063AAC2B9F413700D489CF /* SceneDelegate.swift */,
+				262B64132BAB215C00B308C8 /* ProfileViewController.swift */,
 				26F02F9D2B9FC152003299DF /* ImagesList */,
 				26063AB02B9F413700D489CF /* Main.storyboard */,
 				26063AB32B9F413900D489CF /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 			files = (
 				26063AAF2B9F413700D489CF /* ImagesListViewController.swift in Sources */,
 				26F02F9C2B9FC10D003299DF /* ImagesListCell.swift in Sources */,
+				262B64142BAB215C00B308C8 /* ProfileViewController.swift in Sources */,
 				26063AAB2B9F413700D489CF /* AppDelegate.swift in Sources */,
 				26063AAD2B9F413700D489CF /* SceneDelegate.swift in Sources */,
 			);
