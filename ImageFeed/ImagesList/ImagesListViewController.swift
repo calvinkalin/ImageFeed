@@ -46,8 +46,11 @@ final class ImagesListViewController: UIViewController {
                 return
             }
             
-            let image = UIImage(named: photosName[indexPath.row])
-            viewController.image = image
+            if let image = UIImage(named: photosName[indexPath.row]) {
+                viewController.image = image
+            } else {
+                print("Изображение с именем \(photosName[indexPath.row]) не найдено.")
+            }
         } else {
             super.prepare(for: segue, sender: sender)
         }

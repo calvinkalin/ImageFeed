@@ -150,11 +150,11 @@
                             <constraint firstItem="7fg-VE-xqF" firstAttribute="centerX" secondItem="I2m-Ox-EUq" secondAttribute="centerX" id="6F2-EF-iHc"/>
                             <constraint firstItem="7fg-VE-xqF" firstAttribute="bottom" secondItem="I2m-Ox-EUq" secondAttribute="bottom" constant="36" id="8di-ZH-8ki"/>
                             <constraint firstItem="7vC-10-ELa" firstAttribute="top" secondItem="7fg-VE-xqF" secondAttribute="top" constant="8" id="LYJ-tK-BdN"/>
-                            <constraint firstItem="IQz-16-8hJ" firstAttribute="leading" secondItem="7fg-VE-xqF" secondAttribute="leading" id="SlT-kx-TnD"/>
-                            <constraint firstItem="7fg-VE-xqF" firstAttribute="bottom" secondItem="IQz-16-8hJ" secondAttribute="bottom" id="cwI-f2-uvX"/>
-                            <constraint firstItem="7fg-VE-xqF" firstAttribute="trailing" secondItem="IQz-16-8hJ" secondAttribute="trailing" id="tJN-10-vFF"/>
+                            <constraint firstItem="IQz-16-8hJ" firstAttribute="leading" secondItem="MdV-7P-NlZ" secondAttribute="leading" id="SlT-kx-TnD"/>
+                            <constraint firstAttribute="bottom" secondItem="IQz-16-8hJ" secondAttribute="bottom" id="cwI-f2-uvX"/>
+                            <constraint firstAttribute="trailing" secondItem="IQz-16-8hJ" secondAttribute="trailing" id="tJN-10-vFF"/>
                             <constraint firstItem="7vC-10-ELa" firstAttribute="leading" secondItem="7fg-VE-xqF" secondAttribute="leading" constant="8" id="vIO-hM-Gqm"/>
-                            <constraint firstItem="IQz-16-8hJ" firstAttribute="top" secondItem="7fg-VE-xqF" secondAttribute="top" id="zO4-I9-KSz"/>
+                            <constraint firstItem="IQz-16-8hJ" firstAttribute="top" secondItem="MdV-7P-NlZ" secondAttribute="top" id="zO4-I9-KSz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="04s-3l-eUS"/>
