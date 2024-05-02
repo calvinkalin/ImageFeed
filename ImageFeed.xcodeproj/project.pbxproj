@@ -25,6 +25,7 @@
 		26DB73292BD689FA007CFC7C /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DB73282BD689FA007CFC7C /* OAuth2Service.swift */; };
 		26E397532BB0631A00C0F206 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E397522BB0631A00C0F206 /* SingleImageViewController.swift */; };
 		26F02F9C2B9FC10D003299DF /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F02F9B2B9FC10D003299DF /* ImagesListCell.swift */; };
+		26FC90E82BE3C530004678B2 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC90E72BE3C530004678B2 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		26DB73282BD689FA007CFC7C /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
 		26E397522BB0631A00C0F206 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		26F02F9B2B9FC10D003299DF /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
+		26FC90E72BE3C530004678B2 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		26063AA92B9F413700D489CF /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				26FC90E62BE3C508004678B2 /* SplashViewController */,
 				26DB73272BD689E3007CFC7C /* Services */,
 				26BF33E22BE2858700F33FBB /* Models */,
 				26266AAB2BCEEDD50005658D /* Auth */,
@@ -149,6 +152,14 @@
 				26F02F9B2B9FC10D003299DF /* ImagesListCell.swift */,
 			);
 			path = ImagesList;
+			sourceTree = "<group>";
+		};
+		26FC90E62BE3C508004678B2 /* SplashViewController */ = {
+			isa = PBXGroup;
+			children = (
+				26FC90E72BE3C530004678B2 /* SplashViewController.swift */,
+			);
+			path = SplashViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +248,7 @@
 				26E397532BB0631A00C0F206 /* SingleImageViewController.swift in Sources */,
 				26266AAD2BCFD9300005658D /* WebViewViewController.swift in Sources */,
 				26063AAD2B9F413700D489CF /* SceneDelegate.swift in Sources */,
+				26FC90E82BE3C530004678B2 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
