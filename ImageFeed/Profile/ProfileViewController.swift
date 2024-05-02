@@ -52,7 +52,7 @@ final class ProfileViewController: UIViewController {
         return logoutButton
     }()
     
-    // MARK: - Overrides Methods
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()

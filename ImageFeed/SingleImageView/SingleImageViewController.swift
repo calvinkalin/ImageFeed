@@ -23,7 +23,7 @@ final class SingleImageViewController: UIViewController {
         }
     }
     
-    // MARK: - Overrides Methods
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.minimumZoomScale = 0.1
