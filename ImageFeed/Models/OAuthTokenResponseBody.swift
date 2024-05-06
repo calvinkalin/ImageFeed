@@ -1,5 +1,5 @@
 //
-//  OAuthTokenRespnseBody.swift
+//  OAuthTokenResponseBody.swift
 //  ImageFeed
 //
 //  Created by Ilya Kalin on 01.05.2024.
@@ -8,8 +8,7 @@
 import Foundation
 
 struct OAuthTokenResponseBody: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case tokenType = "token_type"
         case scope = "scope"
@@ -21,7 +20,7 @@ struct OAuthTokenResponseBody: Codable {
     let scope: String
     let createdAt: Int
     
-    init(from decoder: any Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.accessToken = try container.decodeIfPresent(String.self, forKey: .accessToken)
         self.tokenType = try container.decode(String.self, forKey: .tokenType)

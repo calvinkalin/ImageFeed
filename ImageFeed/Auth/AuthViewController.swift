@@ -35,24 +35,21 @@ final class AuthViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         configureBackButton()
         
     }
     
     // MARK: - Actions
-    @objc
-    private func didTapLoginButton() {
-        segueToWebView()
-    }
+    @objc private func loginButtonTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let webViewVC = storyboard.instantiateViewController(withIdentifier: "WebViewViewController") as? WebViewViewController else {
+            return
+        }
+        navigationController?.pushViewController(webViewVC, animated: true)    }
     
     // MARK: - Private Methods
     
-    func segueToWebView() {
-        let webViewViewController = WebViewViewController()
-        webViewViewController.delegate = self
-        navigationController?.pushViewController(webViewViewController, animated: true)
-    }
     
     private func addSubviews() {
         view.addSubview(loginButton)

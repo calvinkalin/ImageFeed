@@ -28,8 +28,4 @@ final class OAuth2TokenStorage: OAuth2TokenStorageProtocol {
             userDefaults.setValue(newValue, forKey: Keys.token.rawValue)
         }
     }
-    
-    func logout() {
-        userDefaults.removeObject(forKey: Keys.token.rawValue)
-    }
 }

@@ -62,6 +62,7 @@ final class WebViewViewController: UIViewController {
     //MARK: - Private Methods
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
+            assertionFailure("Ошибка подготовки \(WebViewConstants.unsplashAuthorizeURLString)")
             return
         }
         urlComponents.queryItems = [
