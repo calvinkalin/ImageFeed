@@ -59,7 +59,7 @@ final class WebViewViewController: UIViewController {
             }
         }
     
-    //MARK: - Private Methods 
+    //MARK: - Private Methods
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
             return
@@ -77,39 +77,42 @@ final class WebViewViewController: UIViewController {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+
+    
+    private func updateProgress() {
+        progressView.progress = Float(webView.estimatedProgress)
+        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+    }
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if
             let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
-            urlComponents.path == "/oauth/authorize/native",
+            urlComponents.path == WebViewConstants.urlComponentsPath,
             let items = urlComponents.queryItems,
-            let codeItem = items.first(where: { $0.name == "code" })
+            let codeItem = items.first(where: {$0.name == "code"})
         {
             return codeItem.value
         } else {
             return nil
         }
     }
-    
-    private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
-    }
 }
-
 //MARK: - WKNavigationDelegate
-extension WebViewViewController: WKNavigationDelegate {
-    func webView(
-        _ webView: WKWebView,
-        decidePolicyFor navigationAction: WKNavigationAction,
-        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-    ) {
+extension WebViewViewController: WKNavigationDelegate { // проверка авторизации пользователя
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let delegate = delegate else {
+            decisionHandler(.allow) // Если делегат равен nil, разрешаем навигацию
+            return
+        }
+        
         if let code = code(from: navigationAction) {
-            //TODO: process code
-            decisionHandler(.cancel)
+            delegate.webViewViewController(self, didAuthenticateWithCode: code)
+            decisionHandler(.cancel) // Если код получен, отменяем навигационное действие
         } else {
-            decisionHandler(.allow)
+            decisionHandler(.allow) // Если код не получен, разрешаем навигационное действие
         }
     }
 }

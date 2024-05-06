@@ -15,16 +15,21 @@ final class OAuth2TokenStorage: OAuth2TokenStorageProtocol {
     
     private enum Keys: String {
         case token
+        
     }
-    
+    static let shared = OAuth2TokenStorage()
     private let userDefaults = UserDefaults.standard
     
     var token: String? {
-            get {
-                return UserDefaults.standard.string(forKey: Keys.token.rawValue)
-            }
-            set {
-                UserDefaults.standard.set(newValue, forKey: Keys.token.rawValue)
-            }
+        get {
+            return userDefaults.string(forKey: Keys.token.rawValue)
+        }
+        set {
+            userDefaults.setValue(newValue, forKey: Keys.token.rawValue)
+        }
+    }
+    
+    func logout() {
+        userDefaults.removeObject(forKey: Keys.token.rawValue)
     }
 }
