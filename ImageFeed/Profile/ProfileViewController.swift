@@ -13,12 +13,13 @@ final class ProfileViewController: UIViewController {
     private let imageView = UIImageView()
     private let exitButton = UIButton()
     private let nameLabel = UILabel()
-    private let nickNameLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let tagLabel = UILabel()
+    private let bioLabel = UILabel()
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
     private let oAuth2TokenStorage = OAuth2TokenStorage()
+    private let profileLogoutService = ProfileLogoutService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
     
@@ -45,15 +46,15 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        oAuth2TokenStorage.resetToken()
+        showAlert()
     }
 }
 
 extension ProfileViewController {
     func updateView(data: Profile) {
         nameLabel.text = data.name
-        nickNameLabel.text = data.loginName
-        descriptionLabel.text = data.bio
+        tagLabel.text = data.loginName
+        bioLabel.text = data.bio
     }
     
     func updateAvatar() {
@@ -65,8 +66,46 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
+    func showAlert() {
+        let alert = UIAlertController(
+            title: "Пока, пока!",
+            message: "Уверены что хотите выйти?",
+            preferredStyle: .alert
+        )
+        
+        let yesAction = UIAlertAction(
+            title: "Да",
+            style: .default) { _ in
+                alert.dismiss(animated: true)
+                self.profileLogoutService.logout()
+                
+                guard let window = UIApplication.shared.windows.first else {
+                    assertionFailure("confirmExit Invalid Configuration")
+                    return
+                }
+                window.rootViewController = SplashViewController()
+            }
+        
+        let noAction = UIAlertAction(
+            title: "Нет",
+            style: .default) { _ in
+                alert.dismiss(animated: true)
+            }
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true)
+    }
+}
+
+extension ProfileViewController {
     private func  setupView() {
         view.backgroundColor = UIColor(named: "Background")
+        configUIElements()
+    }
+    
+    private func configUIElements() {
         profileImageConfig()
         exitButtonConfig()
         nameLabelConfig()
@@ -87,7 +126,7 @@ extension ProfileViewController {
     }
     
     private func exitButtonConfig() {
-        let exitImage = UIImage(named: "exit")
+        let exitImage = UIImage(named: "logout_button")
         guard let exitImage else { return }
         let exitButton = UIButton.systemButton(
             with: exitImage,
@@ -107,7 +146,7 @@ extension ProfileViewController {
     }
     
     private func nameLabelConfig() {
-        nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold/*UIFont.Weight(rawValue: 700.00)*/)
+        nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
@@ -119,26 +158,26 @@ extension ProfileViewController {
     }
     
     private func nickNameLabelConfig() {
-        nickNameLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        nickNameLabel.textColor = .gray
-        nickNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nickNameLabel)
+        tagLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        tagLabel.textColor = .gray
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tagLabel)
         
         NSLayoutConstraint.activate([
-            nickNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            nickNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
+            tagLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            tagLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
         ])
     }
     
     private func descriptionLabelConfig() {
-        descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        descriptionLabel.textColor = .white
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
+        bioLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        bioLabel.textColor = .white
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bioLabel)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 8)
+            bioLabel.leadingAnchor.constraint(equalTo: tagLabel.leadingAnchor),
+            bioLabel.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 8)
         ])
     }
 }
