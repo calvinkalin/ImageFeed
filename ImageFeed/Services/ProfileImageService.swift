@@ -55,6 +55,8 @@ final class ProfileImageService {
                     completion(.failure(error))
                     print("[ProfileImageService]: \(error)")
                 }
+                self.task = nil
+
             }
         }
         self.task = task
