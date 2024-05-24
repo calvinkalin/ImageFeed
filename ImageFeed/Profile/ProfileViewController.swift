@@ -122,25 +122,18 @@ extension ProfileViewController {
         ])
     }
     
-    private func exitButtonConfig() {
-        let exitImage = UIImage(named: "logout_button")
-        guard let exitImage else { return }
-        let exitButton = UIButton.systemButton(
-            with: exitImage,
+    private func logoutButtonConfig() {
+        let logoutImage = UIImage(named: "logout_button")
+        guard let logoutImage else { return }
+        let logoutButton = UIButton.systemButton(
+            with: logoutImage,
             target: self,
             action: #selector(Self.didTapButton)
         )
-        exitButton.tintColor = .red
-        exitButton.setImage(exitImage, for: .normal)
-        exitButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(exitButton)
-        
-        NSLayoutConstraint.activate([
-            exitButton.widthAnchor.constraint(equalToConstant: 24),
-            exitButton.heightAnchor.constraint(equalToConstant: 24),
-            exitButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            exitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
-        ])
+        logoutButton.tintColor = .red
+        logoutButton.setImage(logoutImage, for: .normal)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(logoutButton)
     }
     
     private func nameLabelConfig() {
