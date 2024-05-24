@@ -94,6 +94,7 @@ extension ProfileViewController {
             target: self,
             action: #selector(Self.didTapButton)
         )
+        logoutButton.tintColor = .red
         logoutButton.setImage(logoutImage, for: .normal)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
