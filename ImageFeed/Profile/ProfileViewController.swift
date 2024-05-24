@@ -102,7 +102,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     private func  setupView() {
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(named: "Background")
         profileImageConfig()
         exitButtonConfig()
         nameLabelConfig()

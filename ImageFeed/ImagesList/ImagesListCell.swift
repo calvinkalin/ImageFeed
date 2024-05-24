@@ -14,17 +14,17 @@ final class ImagesListCell: UITableViewCell {
     
     weak var delegate: ImagesListCellDelegate?
     
-    @IBOutlet var contentImage: UIImageView!
+    @IBOutlet var cellImage: UIImageView!
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var dateLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        contentImage.kf.cancelDownloadTask()
+        cellImage.kf.cancelDownloadTask()
     }
     
-    @IBAction func likeButtonClicked(sender: Any) {
+    @IBAction func likeButtonTapped(_ sender: Any) {
         delegate?.imageListCellDidTapLike(self){ [weak self] isLiked in
             guard let self = self else {
                 print("[ImagesListCell]: Error in ImagesListCell")
@@ -35,7 +35,7 @@ final class ImagesListCell: UITableViewCell {
     }
     
     func setImageCell(image: UIImage, date: String, isLiked: Bool ) {
-        contentImage.image = image
+        cellImage.image = image
         dateLabel.text = date
         setImageLike(isLiked: isLiked)
     }

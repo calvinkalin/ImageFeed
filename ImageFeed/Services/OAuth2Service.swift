@@ -71,6 +71,7 @@ final class OAuth2Service {
                     completion(.failure(error))
                     print("[OAuth2Service]: \(error)")
                 }
+                self.task = nil
             }
         }
         self.task = task

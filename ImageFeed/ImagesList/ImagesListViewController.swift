@@ -75,7 +75,7 @@ extension ImagesListViewController: UITableViewDataSource {
         
         // Получаем значения и объект для загрузки
         guard let url = URL(string: thumbImageUrl),
-              let imageView = imagesListCell.contentImage else {
+              let imageView = imagesListCell.cellImage else {
             return imagesListCell
         }
         
