@@ -11,6 +11,7 @@ import Kingfisher
 final class ImagesListViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     
+    //private let dateFormatter = ISO8601DateFormatter()
     private let imagesListService = ImagesListService.shared
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     private var imagesListServiceObserver: NSObjectProtocol?
@@ -52,21 +53,27 @@ final class ImagesListViewController: UIViewController {
 
 extension ImagesListViewController: UITableViewDataSource {
     
+    // Количество строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         photos.count
     }
     
+    // Объект который будет отображаться в ячейке
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
+        // Определение переиспользуемой ячейки
+        let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reusedIdentifier, for: indexPath)
         
         guard let imagesListCell = cell as? ImagesListCell else {
             return UITableViewCell()
         }
         
+        // Вызов метода конфигурации ячейки до загрузки фото
         configCell(for: imagesListCell, with: indexPath)
         
+        // Константа с url маленького изображения
         let thumbImageUrl = photos[indexPath.row].thumbImageURL
         
+        // Получаем значения и объект для загрузки
         guard let url = URL(string: thumbImageUrl),
               let imageView = imagesListCell.contentImage else {
             return imagesListCell
@@ -74,22 +81,28 @@ extension ImagesListViewController: UITableViewDataSource {
         
         imagesListCell.delegate = self
         
+        // Индикатор загрузки
         imageView.kf.indicatorType = .activity
         
+        // Загрузка изображения по по url
         imageView.kf.setImage(with: url) { result in
             switch result {
             case .success(_):
+                // Перерисовка ячеек
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             case .failure(let error):
                 print("[ImagesListViewController]: \(error)")
             }
         }
         
+        // Возвращаем ячейки
         return imagesListCell
     }
 }
 
 extension ImagesListViewController {
+    
+    // Конфигурируем ячейку с параметрами
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
         var dateLabel: String
         if indexPath.row < photos.count {
@@ -108,10 +121,12 @@ extension ImagesListViewController {
 
 extension ImagesListViewController: UITableViewDelegate {
     
+    // Переход на SingleImageViewController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: showSingleImageSegueIdentifier, sender: indexPath)
     }
     
+    // Вычисление высоты ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let imageSize = photos[indexPath.row].size
         let imageInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
@@ -124,6 +139,7 @@ extension ImagesListViewController: UITableViewDelegate {
 }
 
 extension ImagesListViewController: ImagesListCellDelegate {
+    // Метод установки лайка
     func imageListCellDidTapLike(_ cell: ImagesListCell, completion: @escaping (Bool) -> Void) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         
@@ -153,6 +169,7 @@ extension ImagesListViewController: ImagesListCellDelegate {
 }
 
 extension ImagesListViewController {
+    // Загрузка следующей страницы если отображается последняя ячейка
     func tableView(
         _ tableView: UITableView,
         willDisplay cell: UITableViewCell,
@@ -163,6 +180,7 @@ extension ImagesListViewController {
         }
     }
     
+    // Анимация обновления изображений после загрузки
     func updateTableViewAnimated() {
         let oldCount = photos.count
         let newCount = imagesListService.photos.count

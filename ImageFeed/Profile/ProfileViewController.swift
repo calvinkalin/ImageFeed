@@ -8,17 +8,18 @@
 import Foundation
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     private let imageView = UIImageView()
     private let exitButton = UIButton()
     private let nameLabel = UILabel()
-    private let tagLabel = UILabel()
-    private let bioLabel = UILabel()
+    private let nickNameLabel = UILabel()
+    private let descriptionLabel = UILabel()
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private let oAuth2TokenStorage = OAuth2TokenStorage()
+    private let imagesListService = ImagesListService.shared
     private let profileLogoutService = ProfileLogoutService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
@@ -47,21 +48,6 @@ final class ProfileViewController: UIViewController {
     @objc
     private func didTapButton() {
         showAlert()
-    }
-}
-
-extension ProfileViewController {
-    func updateView(data: Profile) {
-        nameLabel.text = data.name
-        tagLabel.text = data.loginName
-        bioLabel.text = data.bio
-    }
-    
-    func updateAvatar() {
-        guard let profileImageURL = ProfileImageService.shared.profileImageURL,
-              let url = URL(string: profileImageURL)
-        else { return }
-        imageView.kf.setImage(with: url)
     }
 }
 
@@ -100,12 +86,23 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController {
-    private func  setupView() {
-        view.backgroundColor = UIColor(named: "Background")
-        configUIElements()
+    func updateView(data: Profile) {
+        nameLabel.text = data.name
+        nickNameLabel.text = data.loginName
+        descriptionLabel.text = data.bio
     }
     
-    private func configUIElements() {
+    func updateAvatar() {
+        guard let profileImageURL = ProfileImageService.shared.profileImageURL,
+              let url = URL(string: profileImageURL)
+        else { return }
+        imageView.kf.setImage(with: url)
+    }
+}
+
+extension ProfileViewController {
+    private func  setupView() {
+        view.backgroundColor = .black
         profileImageConfig()
         exitButtonConfig()
         nameLabelConfig()
@@ -133,6 +130,7 @@ extension ProfileViewController {
             target: self,
             action: #selector(Self.didTapButton)
         )
+        exitButton.tintColor = .red
         exitButton.setImage(exitImage, for: .normal)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(exitButton)
@@ -158,26 +156,26 @@ extension ProfileViewController {
     }
     
     private func nickNameLabelConfig() {
-        tagLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        tagLabel.textColor = .gray
-        tagLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tagLabel)
+        nickNameLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        nickNameLabel.textColor = .gray
+        nickNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nickNameLabel)
         
         NSLayoutConstraint.activate([
-            tagLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            tagLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
+            nickNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            nickNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
         ])
     }
     
     private func descriptionLabelConfig() {
-        bioLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        bioLabel.textColor = .white
-        bioLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bioLabel)
+        descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        descriptionLabel.textColor = .white
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            bioLabel.leadingAnchor.constraint(equalTo: tagLabel.leadingAnchor),
-            bioLabel.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 8)
+            descriptionLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 8)
         ])
     }
 }
