@@ -104,13 +104,15 @@ extension ProfileViewController {
     private func  setupView() {
         view.backgroundColor = UIColor(named: "Background")
         profileImageConfig()
-        exitButtonConfig()
+        logoutButtonConfig()
         nameLabelConfig()
         nickNameLabelConfig()
         descriptionLabelConfig()
     }
     
     private func profileImageConfig() {
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 35
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         
@@ -134,6 +136,13 @@ extension ProfileViewController {
         logoutButton.setImage(logoutImage, for: .normal)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
+        
+        NSLayoutConstraint.activate([
+            logoutButton.widthAnchor.constraint(equalToConstant: 24),
+            logoutButton.heightAnchor.constraint(equalToConstant: 24),
+            logoutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 327),
+            logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+        ])
     }
     
     private func nameLabelConfig() {
