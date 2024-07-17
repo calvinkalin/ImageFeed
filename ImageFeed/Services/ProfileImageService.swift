@@ -57,6 +57,7 @@ final class ProfileImageService {
                     self.task = nil
                 }
                 self.task = nil
+
             }
         }
         self.task = task

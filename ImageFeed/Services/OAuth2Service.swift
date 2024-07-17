@@ -62,7 +62,7 @@ final class OAuth2Service {
                 switch result {
                 case.success(let decodedData):
                     guard let accessToken = decodedData.accessToken else {
-                        fatalError("[OAuth2Service]: can`t decode token!")
+                        preconditionFailure("[OAuth2Service]: can`t decode token!")
                     }
                     self.task = nil
                     self.lastCode = nil
@@ -70,6 +70,8 @@ final class OAuth2Service {
                 case .failure(let error):
                     completion(.failure(error))
                     print("[OAuth2Service]: \(error)")
+                    self.task = nil
+                    self.lastCode = nil
                 }
                 self.task = nil
             }
