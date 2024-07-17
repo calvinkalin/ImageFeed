@@ -73,6 +73,7 @@ final class OAuth2Service {
                     self.task = nil
                     self.lastCode = nil
                 }
+                self.task = nil
             }
         }
         self.task = task

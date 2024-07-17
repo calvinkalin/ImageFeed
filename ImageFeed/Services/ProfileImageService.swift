@@ -54,6 +54,7 @@ final class ProfileImageService {
                 case .failure(let error):
                     completion(.failure(error))
                     print("[ProfileImageService]: \(error)")
+                    self.task = nil
                 }
                 self.task = nil
 

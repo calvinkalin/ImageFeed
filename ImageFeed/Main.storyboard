@@ -121,7 +121,10 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gr1-h8-SQc" userLabel="Like Button">
                                                     <rect key="frame" x="332" y="4" width="42" height="42"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" image="active"/>
+                                                    <state key="normal" image="like_button_off"/>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="g28-LM-LcQ" eventType="touchUpInside" id="Yct-Ic-0Iq"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27 августа 2024" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htN-Pk-Z1R" userLabel="Date Label">
                                                     <rect key="frame" x="24" y="175" width="102" height="16"/>
@@ -145,9 +148,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="YPBlack"/>
                                         <connections>
-                                            <outlet property="contentImage" destination="iHu-H6-8Hr" id="WIY-kH-OtO"/>
+                                            <outlet property="cellImage" destination="iHu-H6-8Hr" id="tLi-m8-GOs"/>
                                             <outlet property="dateLabel" destination="htN-Pk-Z1R" id="Y23-bK-0fT"/>
-                                            <outlet property="likeButton" destination="gr1-h8-SQc" id="nbE-Sr-dnG"/>
+                                            <outlet property="likeButton" destination="gr1-h8-SQc" id="Fod-ZA-Vfu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -228,7 +231,7 @@
                                     <constraint firstAttribute="height" constant="48" id="qKK-WK-I2C"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="backward_button"/>
+                                <state key="normal" image="Backward"/>
                                 <connections>
                                     <action selector="didTapBackButton" destination="sRt-jm-LgH" eventType="touchUpInside" id="4Fb-0Y-SQ7"/>
                                 </connections>
@@ -290,8 +293,8 @@
     </scenes>
     <resources>
         <image name="0" width="1600" height="1059"/>
-        <image name="active" width="42" height="42"/>
-        <image name="backward_button" width="24" height="24"/>
+        <image name="Backward" width="24" height="24"/>
+        <image name="like_button_off" width="42" height="42"/>
         <image name="share_button" width="50" height="50"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <namedColor name="YPBlack">

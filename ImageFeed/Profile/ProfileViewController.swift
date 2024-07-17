@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     private let imageView = UIImageView()
@@ -18,7 +19,8 @@ final class ProfileViewController: UIViewController {
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
-    private let oAuth2TokenStorage = OAuth2TokenStorage()
+    private let imagesListService = ImagesListService.shared
+    private let profileLogoutService = ProfileLogoutService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
     
@@ -45,7 +47,41 @@ final class ProfileViewController: UIViewController {
     
     @objc
     private func didTapButton() {
-        oAuth2TokenStorage.resetToken()
+        showAlert()
+    }
+}
+
+extension ProfileViewController {
+    func showAlert() {
+        let alert = UIAlertController(
+            title: "Пока, пока!",
+            message: "Уверены что хотите выйти?",
+            preferredStyle: .alert
+        )
+        
+        let yesAction = UIAlertAction(
+            title: "Да",
+            style: .default) { _ in
+                alert.dismiss(animated: true)
+                self.profileLogoutService.logout()
+                
+                guard let window = UIApplication.shared.windows.first else {
+                    assertionFailure("confirmExit Invalid Configuration")
+                    return
+                }
+                window.rootViewController = SplashViewController()
+            }
+        
+        let noAction = UIAlertAction(
+            title: "Нет",
+            style: .default) { _ in
+                alert.dismiss(animated: true)
+            }
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true)
     }
 }
 
@@ -75,6 +111,8 @@ extension ProfileViewController {
     }
     
     private func profileImageConfig() {
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 35
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         
@@ -102,13 +140,12 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             logoutButton.widthAnchor.constraint(equalToConstant: 24),
             logoutButton.heightAnchor.constraint(equalToConstant: 24),
-            logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
+
         ])
     }
     
     private func nameLabelConfig() {
-        nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold/*UIFont.Weight(rawValue: 700.00)*/)
+        nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
         nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
