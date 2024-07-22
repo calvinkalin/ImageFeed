@@ -7,6 +7,11 @@
 
 import Foundation
 
+public protocol ImagesListServiceProtocol {
+    func fetchPhotosNextPage()
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void)
+}
+
 final class ImagesListService {
     
     static let shared = ImagesListService()
@@ -17,7 +22,7 @@ final class ImagesListService {
     
     private var lastLoadedPage: Int?
     private var task: URLSessionTask?
-    private var mainUrlProfile = "https://api.unsplash.com"
+    private var mainUrlProfile = "https://api.unsplash.com/"
     
     private init() {}
     
@@ -79,7 +84,6 @@ final class ImagesListService {
         task.resume()
     }
     
-    // Метод смены лайка
     func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
         
         guard task == nil else { return }
@@ -125,9 +129,8 @@ final class ImagesListService {
         task.resume()
     }
     
-    // Запрос статуса лайка фото
     private func likePhotoRequest(photoId: String) -> URLRequest? {
-        guard let url = URL(string: mainUrlProfile + "/photos/\(photoId)/like"),
+        guard let url = URL(string: mainUrlProfile + "photos/\(photoId)/like"),
               let token = OAuth2TokenStorage().token else {
             preconditionFailure("[ImagesListService]: Error: unable to construct likePhotoRequest")
         }
