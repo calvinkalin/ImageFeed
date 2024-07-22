@@ -154,6 +154,7 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             logoutButton.widthAnchor.constraint(equalToConstant: 24),
             logoutButton.heightAnchor.constraint(equalToConstant: 24),
+
             logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
 
