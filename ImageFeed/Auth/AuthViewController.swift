@@ -5,18 +5,19 @@
 //  Created by Ilya Kalin on 15.05.2024.
 //
 
+import Foundation
 import UIKit
 
 protocol AuthViewControllerDelegate: AnyObject {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
+
 final class AuthViewController: UIViewController {
     
     weak var delegate: AuthViewControllerDelegate?
-
+    
     private let showWebViewSegueIdentifier = "ShowWebView"
     private let buttonView = UIButton()
-
         
     override func viewDidLoad() {
         setupView()
@@ -46,6 +47,7 @@ final class AuthViewController: UIViewController {
         performSegue(withIdentifier: showWebViewSegueIdentifier, sender: Any?.self)
     }
 }
+
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         delegate?.authViewController(self, didAuthenticateWithCode: code)
@@ -74,7 +76,6 @@ extension AuthViewController: WebViewViewControllerDelegate {
 
 extension AuthViewController {
     private func setupView() {
-        view.backgroundColor = UIColor(named: "Background")
         view.backgroundColor = .background
         setupLogo()
         setupLogonButton()
@@ -105,7 +106,7 @@ extension AuthViewController {
         buttonView.translatesAutoresizingMaskIntoConstraints = false
         buttonView.accessibilityIdentifier = "Authenticate"
         view.addSubview(buttonView)
-
+        
         NSLayoutConstraint.activate([
             buttonView.heightAnchor.constraint(equalToConstant: 48),
             buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
