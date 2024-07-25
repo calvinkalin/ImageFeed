@@ -10,7 +10,14 @@ import UIKit
 import Kingfisher
 import WebKit
 
-final class ProfileViewController: UIViewController {
+public protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol? { get set }
+    func updateView(data: Profile)
+    func setAvatar(url: URL)
+}
+
+final class ProfileViewController:  UIViewController & ProfileViewControllerProtocol {
+    
     private let imageView = UIImageView()
     private let exitButton = UIButton()
     private let nameLabel = UILabel()
@@ -23,6 +30,8 @@ final class ProfileViewController: UIViewController {
     private let profileLogoutService = ProfileLogoutService.shared
     
     private var profileImageServiceObserver: NSObjectProtocol?
+    
+    var presenter: ProfilePresenterProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +107,9 @@ extension ProfileViewController {
         else { return }
         imageView.kf.setImage(with: url)
     }
+    func setAvatar(url: URL) {
+        imageView.kf.setImage(with: url)
+    }
 }
 
 extension ProfileViewController {
@@ -140,8 +152,9 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             logoutButton.widthAnchor.constraint(equalToConstant: 24),
             logoutButton.heightAnchor.constraint(equalToConstant: 24),
-            logoutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 327),
-            logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
+            
         ])
     }
     

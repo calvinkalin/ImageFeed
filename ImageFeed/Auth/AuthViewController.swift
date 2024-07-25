@@ -5,20 +5,19 @@
 //  Created by Ilya Kalin on 15.05.2024.
 //
 
-import Foundation
 import UIKit
 
 protocol AuthViewControllerDelegate: AnyObject {
     func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
 }
-
 final class AuthViewController: UIViewController {
     
     weak var delegate: AuthViewControllerDelegate?
-    
+
     private let showWebViewSegueIdentifier = "ShowWebView"
     private let buttonView = UIButton()
-    
+
+        
     override func viewDidLoad() {
         setupView()
         configureBackButton()
@@ -28,7 +27,14 @@ final class AuthViewController: UIViewController {
         if segue.identifier == showWebViewSegueIdentifier {
             guard
                 let webViewViewController = segue.destination as? WebViewViewController
-            else { fatalError("Failed to prepare for \(showWebViewSegueIdentifier)") }
+            else {
+                assertionFailure("Failed to prepare for \(showWebViewSegueIdentifier)")
+                return
+            }
+            let authHelper = AuthHelper()
+            let webViewPresenter = WebViewPresenter(authHelper: authHelper)
+            webViewViewController.presenter = webViewPresenter
+            webViewPresenter.view = webViewViewController
             webViewViewController.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
@@ -40,7 +46,6 @@ final class AuthViewController: UIViewController {
         performSegue(withIdentifier: showWebViewSegueIdentifier, sender: Any?.self)
     }
 }
-
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         delegate?.authViewController(self, didAuthenticateWithCode: code)
@@ -70,6 +75,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
 extension AuthViewController {
     private func setupView() {
         view.backgroundColor = UIColor(named: "Background")
+        view.backgroundColor = .background
         setupLogo()
         setupLogonButton()
     }
@@ -97,8 +103,9 @@ extension AuthViewController {
         buttonView.layer.cornerRadius = 16
         buttonView.layer.masksToBounds = true
         buttonView.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.accessibilityIdentifier = "Authenticate"
         view.addSubview(buttonView)
-        
+
         NSLayoutConstraint.activate([
             buttonView.heightAnchor.constraint(equalToConstant: 48),
             buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
