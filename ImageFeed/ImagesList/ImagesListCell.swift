@@ -18,6 +18,7 @@ final class ImagesListCell: UITableViewCell {
     @IBOutlet var likeButton: UIButton!
     @IBOutlet var dateLabel: UILabel!
     
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -43,5 +44,7 @@ final class ImagesListCell: UITableViewCell {
     func setImageLike(isLiked: Bool) {
         guard let imageLike = UIImage(named: isLiked ? "like_button_on" : "like_button_off") else { return }
         likeButton.setImage(imageLike, for: .normal)
+        likeButton.accessibilityIdentifier = "Like button"
+
     }
 }

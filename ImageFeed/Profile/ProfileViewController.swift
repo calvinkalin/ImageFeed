@@ -126,6 +126,8 @@ extension ProfileViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 35
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "Avatar image"
+
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
@@ -147,6 +149,8 @@ extension ProfileViewController {
         logoutButton.tintColor = .red
         logoutButton.setImage(logoutImage, for: .normal)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.accessibilityIdentifier = "Logout button"
+
         view.addSubview(logoutButton)
         
         NSLayoutConstraint.activate([
