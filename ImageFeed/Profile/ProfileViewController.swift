@@ -19,10 +19,10 @@ public protocol ProfileViewControllerProtocol: AnyObject {
 final class ProfileViewController:  UIViewController & ProfileViewControllerProtocol {
     
     private let imageView = UIImageView()
-    private let exitButton = UIButton()
+    private let logoutButton = UIButton()
     private let nameLabel = UILabel()
-    private let nickNameLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let tagLabel = UILabel()
+    private let bioLabel = UILabel()
     
     private let profileService = ProfileService.shared
     private let profileImageService = ProfileImageService.shared
@@ -97,8 +97,8 @@ extension ProfileViewController {
 extension ProfileViewController {
     func updateView(data: Profile) {
         nameLabel.text = data.name
-        nickNameLabel.text = data.loginName
-        descriptionLabel.text = data.bio
+        tagLabel.text = data.loginName
+        bioLabel.text = data.bio
     }
     
     func updateAvatar() {
@@ -118,8 +118,8 @@ extension ProfileViewController {
         profileImageConfig()
         logoutButtonConfig()
         nameLabelConfig()
-        nickNameLabelConfig()
-        descriptionLabelConfig()
+        tagLabelConfig()
+        bioLabelConfig()
     }
     
     private func profileImageConfig() {
@@ -159,6 +159,7 @@ extension ProfileViewController {
             logoutButton.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
             
+
         ])
     }
     
@@ -174,27 +175,27 @@ extension ProfileViewController {
         ])
     }
     
-    private func nickNameLabelConfig() {
-        nickNameLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        nickNameLabel.textColor = .gray
-        nickNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nickNameLabel)
+    private func tagLabelConfig() {
+        tagLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        tagLabel.textColor = .gray
+        tagLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tagLabel)
         
         NSLayoutConstraint.activate([
-            nickNameLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            nickNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
+            tagLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            tagLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8)
         ])
     }
     
-    private func descriptionLabelConfig() {
-        descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        descriptionLabel.textColor = .white
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
+    private func bioLabelConfig() {
+        bioLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        bioLabel.textColor = .white
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bioLabel)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.leadingAnchor.constraint(equalTo: nickNameLabel.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: nickNameLabel.bottomAnchor, constant: 8)
+            bioLabel.leadingAnchor.constraint(equalTo: tagLabel.leadingAnchor),
+            bioLabel.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 8)
         ])
     }
 }
